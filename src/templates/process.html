@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">SMS Elements</a></li>
+    <li class="breadcrumb-item active">{{ element.element_name }}</li>
+{% endblock %}
+ 
+{% block content %}
+{% endblock %}
