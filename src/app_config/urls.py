@@ -25,4 +25,5 @@ urlpatterns = [
     path('',views.home, name='home'),
     path('elements/<int:pk>/', views.element_processes, name='element_processes'),
     # url(r'^elements/(?P<pk>\d+)/$', views.element_processes, name='element_processes' ),
+    path('elements/<int:pk>/new/', views.new_process, name = "new_process"),
 ]

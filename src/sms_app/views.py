@@ -13,4 +13,8 @@ def element_processes(req, pk):
     element = get_object_or_404(Element, pk=pk)
     return render(req, 'process.html', {'element':element})
 
+def new_process(req, pk):
+    element = get_object_or_404(Element, pk=pk)
+    context = {'element': element}
+    return render(req, "new_process.html", context)
 
