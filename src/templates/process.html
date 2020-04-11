@@ -6,4 +6,27 @@
 {% endblock %}
  
 {% block content %}
+    <div class="mb-4">
+        <a href="{% url 'new_process' element.pk %}" class="btn btn-primary">New Process</a>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Process Name</th>
+                <th>Create by</th>
+                <th>Process Description</th>
+                <th>Last updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for process in element.process.all %}
+                <tr>
+                    <td>{{ process.process_name }}</td>
+                    <td>{{ process.created_by }}</td>
+                    <td>{{ process.description }}</td>
+                    <td>{{ process.last_updated }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

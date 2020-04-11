@@ -12,13 +12,13 @@
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
-            <label for=id_subject">Process Name:</label>
-            <input type="text" class="form-control" id="id_process" name="process">
+            <label for="id_process_name">Process Name</label>
+            <input type="text" class="form-control" id="id_process_name" name="process_name">
         </div>
         <div class="form-group">
-            <label for="id_process_description">Process Description:</label>
-            <textarea class="form-control" id="id_process" name="process_description" rows="5"></textarea>
+            <label for="id_kpi_name">KPI</label>
+            <textarea class="form-control" id="id_kpi_name" name="kpi_name" rows="4"></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Save</button>
+        <button class="btn btn-success" type="submit">Save</button>
     </form>
 {% endblock %}
