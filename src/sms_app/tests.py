@@ -87,7 +87,7 @@ class NewProcessTests(TestCase):
 
     def test_new_process_valid_post_data(self):
         url = reverse('new_process', kwargs={'pk':1})
-        data = {'process_name': 'Test title', 'process_description':'Lorem ipsum dolor sit amet' }
+        data = {'process_name': 'Test title', 'kpi_name':'Lorem ipsum dolor sit amet' }
         response = self.client.post(url, data)
         self.assertTrue(Process.objects.exists())
         self.assertTrue(Kpi.objects.exists())
@@ -101,14 +101,14 @@ class NewProcessTests(TestCase):
         response = self.client.post(url, {})
         self.assertEquals(response.status_code, 200)
 
-    # def test_new_process_invalid_post_data_empty_fields(self):
-    #     '''
-    #     Invalid post data should not redirect
-    #     The expected behavior is to show the form again with validation errors
-    #     '''
-    #     url = reverse('new_process', kwargs={'pk':1})
-    #     data = {'process_name': '', 'process_description': ''}
-    #     response = self.client.post(url, data)
-    #     self.assertEquals(response.status_code, 200)
-    #     self.assertFalse(Process.objects.exists())
-    #     self.assertFalse(Kpi.objects.exists())
+    def test_new_process_invalid_post_data_empty_fields(self):
+        '''
+        Invalid post data should not redirect
+        The expected behavior is to show the form again with validation errors
+        '''
+        url = reverse('new_process', kwargs={'pk':1})
+        data = {'process_name': '', 'process_description': ''}
+        response = self.client.post(url, data)
+        self.assertEquals(response.status_code, 200)
+        self.assertFalse(Process.objects.exists())
+        self.assertFalse(Kpi.objects.exists())
