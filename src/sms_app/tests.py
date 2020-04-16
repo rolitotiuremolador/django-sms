@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 from .views import home, element_processes, new_process
 from .models import Element, Process, Kpi
+from .forms import NewProcessForm
 
 # Create your tests here.
 class HomePageTests(TestCase):
@@ -112,3 +113,21 @@ class NewProcessTests(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertFalse(Process.objects.exists())
         self.assertFalse(Kpi.objects.exists())
+
+    def test_contains_form(self):
+        url = reverse('new_process', kwargs={'pk':1})
+        response = self.client.get(url)
+        form = response.context.get('form')
+        self.assertIsInstance(form, NewProcessForm)
+
+    def test_new_process_invalid_post_data(self):
+        '''
+        Invalid post data should not redirect
+        The expected behavior is to show the form again with validated errors
+        '''
+        url = reverse('new_process', kwargs={'pk':1})
+        response = self.client.post(url, {})
+        form = response.context.get('form')
+        self.assertEquals(response.status_code, 200)
+        self.assertTrue(form.errors)
+           
